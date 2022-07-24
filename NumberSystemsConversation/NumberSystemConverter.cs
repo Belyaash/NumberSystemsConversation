@@ -10,7 +10,6 @@ namespace NumberSystemsConversation;
 
 public static class NumberSystemConverter
 {
-
     static NumberSystemConverter()
     {
         Numbers.TryAdd('0', 0);
@@ -31,7 +30,7 @@ public static class NumberSystemConverter
         Numbers.TryAdd('F', 15);
     }
 
-    private static readonly BiDictionary<char, int> Numbers = new BiDictionary<char, int>();
+    internal static readonly BiDictionary<char, int> Numbers = new BiDictionary<char, int>();
 
     public static int ConvertToDecimal(int actualSystem, string number)
     {
@@ -64,7 +63,7 @@ public static class NumberSystemConverter
         {
             var resultForThisDegree = decimalNumber % newSystem;
             Console.WriteLine($"{decimalNumber}%{newSystem} = {resultForThisDegree}");
-            Console.WriteLine($"{Numbers[resultForThisDegree]} + {result} = {Numbers[resultForThisDegree] + result}");
+            Console.WriteLine($"'{Numbers[resultForThisDegree]}' + '{result}' = {Numbers[resultForThisDegree] + result}");
             result = Numbers[resultForThisDegree] + result;
 
             decimalNumber /= newSystem;

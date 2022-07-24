@@ -11,4 +11,10 @@
     <PackageReference Include="BidirectionalDict" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ConsoleInput">
+      <HintPath>..\..\NewConsoleInput\ConsoleInput\bin\Release\net6.0\ConsoleInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
