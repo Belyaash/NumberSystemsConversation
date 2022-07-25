@@ -30,45 +30,46 @@ public static class NumberSystemConverter
         Numbers.TryAdd('F', 15);
     }
 
-    internal static readonly BiDictionary<char, int> Numbers = new BiDictionary<char, int>();
+    internal static readonly BiDictionary<char, int> Numbers = new();
 
     public static int ConvertToDecimal(int actualSystem, string number)
     {
         if (number == null)
             throw new ArgumentNullException("Number argument cannot be null");
 
-        int decimalNumber = 0;
+        var decimalNumber = 0;
         Console.WriteLine($"Converting {number} of {actualSystem} system to decimal system");
 
 
-        for (int i = 0; i < number.Length; i++)
+        for (var i = 0; i < number.Length; i++)
         {
             var tempDecimalNumber = decimalNumber;
             double currentDegree = number.Length - i - 1;
             decimalNumber += Numbers[number[i]] * (int)Math.Pow(actualSystem, currentDegree);
             Console.WriteLine
-                ($"Step {i+1}: {tempDecimalNumber} + {Numbers[number[i]]} * {actualSystem}^{currentDegree} = {decimalNumber}");
+                ($"Step {i + 1}: {tempDecimalNumber} + {Numbers[number[i]]} * {actualSystem}^{currentDegree} = {decimalNumber}");
         }
 
-        Console.WriteLine($"Final result is {decimalNumber}");
+        Console.WriteLine($"{decimalNumber} is number converted to decimal system");
         return decimalNumber;
     }
 
     public static string ConvertDecimalToCustom(int newSystem, int decimalNumber)
     {
         Console.WriteLine($"Convert {decimalNumber} from decimal to {newSystem} system");
-        string result = "";
+        var result = "";
 
-        while (decimalNumber!=0)
+        while (decimalNumber != 0)
         {
             var resultForThisDegree = decimalNumber % newSystem;
             Console.WriteLine($"{decimalNumber}%{newSystem} = {resultForThisDegree}");
-            Console.WriteLine($"'{Numbers[resultForThisDegree]}' + '{result}' = {Numbers[resultForThisDegree] + result}");
+            Console.WriteLine(
+                $"'{Numbers[resultForThisDegree]}' + '{result}' = {Numbers[resultForThisDegree] + result}");
             result = Numbers[resultForThisDegree] + result;
 
             decimalNumber /= newSystem;
         }
+
         return result;
     }
-
 }
